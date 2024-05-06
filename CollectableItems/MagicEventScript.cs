@@ -12,8 +12,9 @@ public class MagicEventScript : MonoBehaviour
         Instantiate(particleSystem, transform.position, Quaternion.identity);
         if (collision.CompareTag("Player"))
         {
-            Destroy(gameObject);
             OnMagicDeath?.Invoke();
+            Destroy(gameObject);
+            
         }
     }
 }

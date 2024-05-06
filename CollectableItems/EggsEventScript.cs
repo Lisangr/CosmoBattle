@@ -12,8 +12,9 @@ public class EggsEventScript : MonoBehaviour
         Instantiate(particleSystem, transform.position, Quaternion.identity);
         if (collision.CompareTag("Player"))
         {
-            Destroy(gameObject);
             OnEggsDeath?.Invoke();
+            Destroy(gameObject);
+            
         }
     }
 }

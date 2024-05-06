@@ -6,13 +6,14 @@ using YG;
 public class Counts : MonoBehaviour
 {
     PlayerCollisin playerCollisin;
-    public TMP_Text textAppleCount,textBananaCount, textBerriesCount, textBerryCount, textBreadCount,
+    PlayerCheckerCounts playerCheckerCounts;
+    public TMP_Text textAppleCount, textBananaCount, textBerriesCount, textBerryCount, textBreadCount,
         textCheeseCount, textCleverCount, textCoinCount, textCrystalCount, textEggsCount, textEyeCount,
         textFishCount, textFungusCount, textGreenCleverCount, textHealthPotionCount, textMagicFishCount,
         textMeatCount, textPieCount, textSardinsCount;
 
-    private int appleCount = 0, bananaCount = 0, berriesCount = 0, berryCount = 0, breadCount = 0, 
-        cheeseCount = 0, cleverCount = 0, coinCount = 0, crystalCount = 0, eggsCount = 0, 
+    private int appleCount = 0, bananaCount = 0, berriesCount = 0, berryCount = 0, breadCount = 0,
+        cheeseCount = 0, cleverCount = 0, coinCount = 0, crystalCount = 0, eggsCount = 0,
         eyeCount = 0, fishCount = 0, fungusCount = 0, greenCleverCount = 0, healthPotionCount = 0,
         magicFishCount = 0, meatCount = 0, pieCount = 0, sardinsCount = 0;
     /*
@@ -25,7 +26,10 @@ public class Counts : MonoBehaviour
     private int currentCrystals;
     private void Start()
     {
-        playerCollisin = FindObjectOfType<PlayerCollisin>().GetComponent<PlayerCollisin>();
+
+            playerCollisin = FindObjectOfType<PlayerCollisin>().GetComponent<PlayerCollisin>();
+
+            //playerCheckerCounts = FindObjectOfType<PlayerCheckerCounts>().GetComponent<PlayerCheckerCounts>();
 
         currentCoins = PlayerPrefs.GetInt("Coins", 0);
         currentCrystals = PlayerPrefs.GetInt("Crystals", 0);
@@ -36,8 +40,8 @@ public class Counts : MonoBehaviour
         }
     }
     private void OnEnable()
-    { 
-        if (textAppleCount != null) 
+    {
+        if (textAppleCount != null)
             AppleEventScript.OnAppleDeath += IncrementAppleCountCount;
         if (textBananaCount != null)
             BananaEventScript.OnBananaDeath += IncrementBananaCountCount;
@@ -72,7 +76,7 @@ public class Counts : MonoBehaviour
         if (textMeatCount != null)
             MeatEventScript.OnMeatDeath += IncrementMeatCountCount;
         if (textPieCount != null)
-            PieEventScript.OnPieDeath += IncrementPieCountCount; 
+            PieEventScript.OnPieDeath += IncrementPieCountCount;
         if (textSardinsCount != null)
             SardinsEventScript.OnSardinsDeath += IncrementSardinsCountCount;
 
@@ -107,39 +111,66 @@ public class Counts : MonoBehaviour
     private void IncrementAppleCountCount()
     {
         appleCount += 1;
-        textAppleCount.text = $"{appleCount}/{playerCollisin.score}";
-        //textAppleCount.text = $"{appleCount}/{tempappleCount}";
+        if (playerCollisin != null)
+        {
+            textAppleCount.text = $"{appleCount}/{playerCollisin.score}";
+        }
+        else { textAppleCount.text = $"{appleCount}/{PlayerCheckerCounts.score}"; }
     }
     private void IncrementBananaCountCount()
     {
         bananaCount += 1;
-        textBananaCount.text = $"{bananaCount}/{playerCollisin.score}";
+        if (playerCollisin != null)
+        {
+            textBananaCount.text = $"{bananaCount}/{playerCollisin.score}";
+        }
+        else { textBananaCount.text = $"{bananaCount}/{PlayerCheckerCounts.score}"; }
     }
     private void IncrementBerriesCountCount()
     {
         berriesCount += 1;
-        textBerriesCount.text = $"{berriesCount}/{playerCollisin.score}";
+        if (playerCollisin != null)
+        {
+            textBerriesCount.text = $"{berriesCount}/{playerCollisin.score}";
+        }
+        else { textBerriesCount.text = $"{berriesCount}/{PlayerCheckerCounts.score}"; }
     }
     private void IncrementBerryCountCount()
     {
         berryCount += 1;
-        textBerryCount.text = $"{berryCount}/{playerCollisin.score}";
+        if (playerCollisin != null)
+        {
+            textBerryCount.text = $"{berryCount}/{playerCollisin.score}";
+        }
+        else { textBerryCount.text = $"{berryCount}/{PlayerCheckerCounts.score}"; }
     }
     private void IncrementBreadCountCount()
     {
         breadCount += 1;
-        textBreadCount.text = $"{breadCount}/{playerCollisin.score}";
+        if (playerCollisin != null)
+        {
+            textBreadCount.text = $"{breadCount}/{playerCollisin.score}";
+        }
+        else { textBreadCount.text = $"{breadCount}/{PlayerCheckerCounts.score}"; }
+
     }
     private void IncrementCheeseCountCount()
     {
         cheeseCount += 1;
-        textCheeseCount.text = $"{cheeseCount}/{playerCollisin.score}";
-        Debug.Log("произошло событие подбора сыра счетчик увеличен на 1");
+        if (playerCollisin != null)
+        {
+            textCheeseCount.text = $"{cheeseCount}/{playerCollisin.score}";
+        }
+        else { textCheeseCount.text = $"{cheeseCount}/{PlayerCheckerCounts.score}"; }
     }
     private void IncrementCleverCountCount()
     {
         cleverCount += 1;
-        textCleverCount.text = $"{cleverCount}/{playerCollisin.score}";
+        if (playerCollisin != null)
+        {
+            textCleverCount.text = $"{cleverCount}/{playerCollisin.score}";
+        }
+        else { textCleverCount.text = $"{cleverCount}/{PlayerCheckerCounts.score}"; }
     }
     private void IncrementCoinCountCount()
     {
@@ -162,52 +193,92 @@ public class Counts : MonoBehaviour
     private void IncrementEggsCountCount()
     {
         eggsCount += 1;
-        textEggsCount.text = $"{eggsCount}/{playerCollisin.score}";
+        if (playerCollisin != null)
+        {
+            textEggsCount.text = $"{eggsCount}/{playerCollisin.score}";
+        }
+        else { textEggsCount.text = $"{eggsCount}/{PlayerCheckerCounts.score}"; }
     }
     private void IncrementEyeCountCount()
     {
         eyeCount += 1;
-        textEyeCount.text = $"{eyeCount}/{playerCollisin.score}";
+        if (playerCollisin != null)
+        {
+            textEyeCount.text = $"{eyeCount}/{playerCollisin.score}";
+        }
+        else { textEyeCount.text = $"{eyeCount}/{PlayerCheckerCounts.score}"; }
     }
     private void IncrementFishCountCount()
     {
         fishCount += 1;
-        textFishCount.text = $"{fishCount}/{playerCollisin.score}";
+        if (playerCollisin != null)
+        {
+            textFishCount.text = $"{fishCount}/{playerCollisin.score}";
+        }
+        else { textFishCount.text = $"{fishCount}/{PlayerCheckerCounts.score}"; }
     }
     private void IncrementFungusCountCount()
     {
         fungusCount += 1;
-        textFungusCount.text = $"{fungusCount}/{playerCollisin.score}";
+        if (playerCollisin != null)
+        {
+            textFungusCount.text = $"{fungusCount}/{playerCollisin.score}";
+        }
+        else { textFungusCount.text = $"{fungusCount}/{PlayerCheckerCounts.score}"; }
     }
     private void IncrementGreenCleverCountCount()
     {
         greenCleverCount += 1;
-        textGreenCleverCount.text = $"{greenCleverCount}/{playerCollisin.score}";
+        if (playerCollisin != null)
+        {
+            textGreenCleverCount.text = $"{greenCleverCount}/{playerCollisin.score}";
+        }
+        else { textGreenCleverCount.text = $"{greenCleverCount}/{PlayerCheckerCounts.score}"; }
     }
     private void IncrementHealthPotionCountCount()
     {
         healthPotionCount += 1;
-        textHealthPotionCount.text = $"{healthPotionCount}/{playerCollisin.score}";
+        if (playerCollisin != null)
+        {
+            textHealthPotionCount.text = $"{healthPotionCount}/{playerCollisin.score}";
+        }
+        else { textHealthPotionCount.text = $"{healthPotionCount}/{PlayerCheckerCounts.score}"; }
     }
     private void IncrementMagicFishCountCount()
     {
         magicFishCount += 1;
-        textMagicFishCount.text = $"{magicFishCount}/{playerCollisin.score}";
+        if (playerCollisin != null)
+        {
+            textMagicFishCount.text = $"{magicFishCount}/{playerCollisin.score}";
+        }
+        else { textMagicFishCount.text = $"{magicFishCount}/{PlayerCheckerCounts.score}"; }
     }
     private void IncrementMeatCountCount()
     {
         meatCount += 1;
-        textMeatCount.text = $"{meatCount}/{playerCollisin.score}";
+        if (playerCollisin != null)
+        {
+            textMeatCount.text = $"{meatCount}/{playerCollisin.score}";
+        }
+        else { textMeatCount.text = $"{meatCount}/{PlayerCheckerCounts.score}"; }
     }
     private void IncrementPieCountCount()
     {
         pieCount += 1;
-        textPieCount.text = $"{pieCount}/{playerCollisin.score}";
+        if (playerCollisin != null)
+        {
+            textPieCount.text = $"{pieCount}/{playerCollisin.score}";
+        }
+        else { textPieCount.text = $"{pieCount}/{PlayerCheckerCounts.score}"; }
     }
     private void IncrementSardinsCountCount()
     {
         sardinsCount += 1;
-        textSardinsCount.text = $"{sardinsCount}/{playerCollisin.score}";
+        if (playerCollisin != null)
+        {
+            textSardinsCount.text = $"{sardinsCount}/{playerCollisin.score}";
+        }
+        else { textSardinsCount.text = $"{sardinsCount}/{PlayerCheckerCounts.score}"; }
     }
 
     public void LoadSaveFromCloud()

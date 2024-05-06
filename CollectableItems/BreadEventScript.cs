@@ -12,8 +12,9 @@ public class BreadEventScript : MonoBehaviour
         Instantiate(particleSystem, transform.position, Quaternion.identity);
         if (collision.CompareTag("Player"))
         {
-            Destroy(gameObject);
             OnBreadDeath?.Invoke();
+            Destroy(gameObject);
+            
         }
     }
 }

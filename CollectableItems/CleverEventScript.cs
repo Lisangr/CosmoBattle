@@ -12,8 +12,9 @@ public class CleverEventScript : MonoBehaviour
         Instantiate(particleSystem, transform.position, Quaternion.identity);
         if (collision.CompareTag("Player"))
         {
-            Destroy(gameObject);
             OnCleverDeath?.Invoke();
+            Destroy(gameObject);
+            
         }
     }
 }

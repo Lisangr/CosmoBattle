@@ -12,8 +12,9 @@ public class FungusEventScript : MonoBehaviour
         Instantiate(particleSystem, transform.position, Quaternion.identity);
         if (collision.CompareTag("Player"))
         {
-            Destroy(gameObject);
             OnFungusDeath?.Invoke();
+            Destroy(gameObject);
+            
         }
     }
 }

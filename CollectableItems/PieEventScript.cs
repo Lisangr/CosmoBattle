@@ -12,8 +12,9 @@ public class PieEventScript : MonoBehaviour
         Instantiate(particleSystem, transform.position, Quaternion.identity);
         if (collision.CompareTag("Player"))
         {
-            Destroy(gameObject);
             OnPieDeath?.Invoke();
+            Destroy(gameObject);
+     
         }
     }
 }

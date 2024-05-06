@@ -12,8 +12,9 @@ public class SardinsEventScript : MonoBehaviour
         Instantiate(particleSystem, transform.position, Quaternion.identity);
         if (collision.CompareTag("Player"))
         {
-            Destroy(gameObject);
             OnSardinsDeath?.Invoke();
+            Destroy(gameObject);
+            
         }
     }
 }

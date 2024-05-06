@@ -13,8 +13,9 @@ public class AppleEventScript : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
-            Destroy(gameObject);
             OnAppleDeath?.Invoke();
+            Destroy(gameObject);
+            
         }
     }
 }

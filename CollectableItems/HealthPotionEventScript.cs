@@ -12,8 +12,9 @@ public class HealthPotionEventScript : MonoBehaviour
         Instantiate(particleSystem, transform.position, Quaternion.identity);
         if (collision.CompareTag("Player"))
         {
-            Destroy(gameObject);
             OnHealthPotionDeath?.Invoke();
+            Destroy(gameObject);
+            
         }
     }
 }

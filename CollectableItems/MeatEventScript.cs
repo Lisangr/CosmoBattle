@@ -12,8 +12,9 @@ public class MeatEventScript : MonoBehaviour
         Instantiate(particleSystem, transform.position, Quaternion.identity);
         if (collision.CompareTag("Player"))
         {
-            Destroy(gameObject);
             OnMeatDeath?.Invoke();
+            Destroy(gameObject);
+            
         }
     }
 }

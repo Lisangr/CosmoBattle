@@ -12,8 +12,9 @@ public class EyeEventScript : MonoBehaviour
         Instantiate(particleSystem, transform.position, Quaternion.identity);
         if (collision.CompareTag("Player"))
         {
-            Destroy(gameObject);
             OnEyeDeath?.Invoke();
+            Destroy(gameObject);
+            
         }
     }
 }

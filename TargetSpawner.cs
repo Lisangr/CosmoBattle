@@ -14,6 +14,9 @@ public class TargetSpawner : MonoBehaviour
     public Transform TargetPausePanel;
 
     private List<GameObject> spawnedTargets = new List<GameObject>();
+    // ...
+    public List<string> TargetNames { get; private set; } = new List<string>();
+    // ...
     void Awake()
     {
         int numOfTargetsToSpawn = Random.Range(minVariants, maxVariants);
@@ -41,6 +44,14 @@ public class TargetSpawner : MonoBehaviour
                 spawnedTargets.Add(targetPauseInstance);
             }
         }
-    }
+        // ...
 
+        // Получение имен объектов из TargetPanel
+        GameObject[] targetObjects = GameObject.FindGameObjectsWithTag("Collectable");
+        foreach (GameObject targetObject in targetObjects)
+        {
+            string objectName = targetObject.name;
+            TargetNames.Add(objectName);
+        }
+    }
 }

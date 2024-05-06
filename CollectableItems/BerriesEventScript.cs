@@ -12,8 +12,9 @@ public class BerriesEventScript : MonoBehaviour
         Instantiate(particleSystem, transform.position, Quaternion.identity);
         if (collision.CompareTag("Player"))
         {
-            Destroy(gameObject);
             OnBerriesDeath?.Invoke();
+            Destroy(gameObject);
+            
         }
     }
 }
