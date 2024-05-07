@@ -6,7 +6,7 @@ public class LevelChanger : MonoBehaviour
 {
     int levelUnLock;
     public Button[] buttons;
-    public Sprite star, noStar;
+    //public Sprite star, noStar;
 
     void Start()
     {
@@ -21,6 +21,7 @@ public class LevelChanger : MonoBehaviour
         {
             buttons[i].interactable = true;
         }
+    }
         /*
         for (int i = 0; i < buttons.Length; i++)
         {
@@ -28,7 +29,7 @@ public class LevelChanger : MonoBehaviour
                 buttons[i].interactable = true;
             else
                 buttons[i].interactable = false;
-        }*/
+        }
             for (int i = 1; i < levelUnLock; i++)
             {
                 //int buttonIndex = i;//Mathf.Clamp(i - 1, 0, buttons.Length - 1);
@@ -75,7 +76,7 @@ public class LevelChanger : MonoBehaviour
             }
 
     }
-
+        */
     public void loadLevel(int levelIndex)
     {
         SceneManager.LoadScene(levelIndex);

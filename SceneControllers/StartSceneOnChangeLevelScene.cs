@@ -1,7 +1,6 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-using YG;
 
 public class StartSceneOnChangeLevelScene : MonoBehaviour
 { 
@@ -14,7 +13,6 @@ public class StartSceneOnChangeLevelScene : MonoBehaviour
             int indexStartingScene;
             if (int.TryParse(buttonName, out indexStartingScene))
             {
-                YandexGame.FullscreenShow();
                 SceneManager.LoadScene(indexStartingScene);//+2
             }
             else

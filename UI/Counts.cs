@@ -6,30 +6,28 @@ using YG;
 public class Counts : MonoBehaviour
 {
     PlayerCollisin playerCollisin;
-    PlayerCheckerCounts playerCheckerCounts;
+
     public TMP_Text textAppleCount, textBananaCount, textBerriesCount, textBerryCount, textBreadCount,
         textCheeseCount, textCleverCount, textCoinCount, textCrystalCount, textEggsCount, textEyeCount,
-        textFishCount, textFungusCount, textGreenCleverCount, textHealthPotionCount, textMagicFishCount,
+        textFishCount, textFungusCount, textHealthPotionCount, textMagicFishCount,
         textMeatCount, textPieCount, textSardinsCount;
 
     private int appleCount = 0, bananaCount = 0, berriesCount = 0, berryCount = 0, breadCount = 0,
         cheeseCount = 0, cleverCount = 0, coinCount = 0, crystalCount = 0, eggsCount = 0,
-        eyeCount = 0, fishCount = 0, fungusCount = 0, greenCleverCount = 0, healthPotionCount = 0,
+        eyeCount = 0, fishCount = 0, fungusCount = 0, healthPotionCount = 0,
         magicFishCount = 0, meatCount = 0, pieCount = 0, sardinsCount = 0;
     /*
     private int tempappleCount, tempbananaCount, tempberriesCount, tempberryCount, tempbreadCount,
         tempcheeseCount, tempcleverCount, tempcoinCount, tempcrystallCount, tempeggsCount, 
-        tempeyeCount, tempfishCount, tempfungusCount, tempgreenCleverCount, temphealthPotionCount, 
+        tempeyeCount, tempfishCount, tempfungusCount, temphealthPotionCount, 
         tempmagicFishCount, tempmeatCount, temppieCount, tempsardinsCount;
     */
     private int currentCoins;
     private int currentCrystals;
     private void Start()
     {
-
-            playerCollisin = FindObjectOfType<PlayerCollisin>().GetComponent<PlayerCollisin>();
-
-            //playerCheckerCounts = FindObjectOfType<PlayerCheckerCounts>().GetComponent<PlayerCheckerCounts>();
+        playerCollisin = FindObjectOfType<PlayerCollisin>().GetComponent<PlayerCollisin>();
+        //playerCheckerCounts = FindObjectOfType<PlayerCheckerCounts>().GetComponent<PlayerCheckerCounts>();
 
         currentCoins = PlayerPrefs.GetInt("Coins", 0);
         currentCrystals = PlayerPrefs.GetInt("Crystals", 0);
@@ -67,8 +65,6 @@ public class Counts : MonoBehaviour
             FishEventScript.OnFishDeath += IncrementFishCountCount;
         if (textFungusCount != null)
             FungusEventScript.OnFungusDeath += IncrementFungusCountCount;
-        if (textGreenCleverCount != null)
-            GreenCleverEventScript.OnGreenCleverDeath += IncrementGreenCleverCountCount;
         if (textHealthPotionCount != null)
             HealthPotionEventScript.OnHealthPotionDeath += IncrementHealthPotionCountCount;
         if (textMagicFishCount != null)
@@ -98,7 +94,6 @@ public class Counts : MonoBehaviour
         EyeEventScript.OnEyeDeath -= IncrementEyeCountCount;
         FishEventScript.OnFishDeath -= IncrementFishCountCount;
         FungusEventScript.OnFungusDeath -= IncrementFungusCountCount;
-        GreenCleverEventScript.OnGreenCleverDeath -= IncrementGreenCleverCountCount;
         HealthPotionEventScript.OnHealthPotionDeath -= IncrementHealthPotionCountCount;
         MagicEventScript.OnMagicDeath -= IncrementMagicFishCountCount;
         MeatEventScript.OnMeatDeath -= IncrementMeatCountCount;
@@ -225,15 +220,6 @@ public class Counts : MonoBehaviour
             textFungusCount.text = $"{fungusCount}/{playerCollisin.score}";
         }
         else { textFungusCount.text = $"{fungusCount}/{PlayerCheckerCounts.score}"; }
-    }
-    private void IncrementGreenCleverCountCount()
-    {
-        greenCleverCount += 1;
-        if (playerCollisin != null)
-        {
-            textGreenCleverCount.text = $"{greenCleverCount}/{playerCollisin.score}";
-        }
-        else { textGreenCleverCount.text = $"{greenCleverCount}/{PlayerCheckerCounts.score}"; }
     }
     private void IncrementHealthPotionCountCount()
     {

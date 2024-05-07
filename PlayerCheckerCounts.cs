@@ -11,6 +11,7 @@ public class PlayerCheckerCounts : MonoBehaviour
 
     void Start()
     {
+        scoreForStatic = Random.Range(2, 9);
         score = scoreForStatic;
 
         winPanel.SetActive(false);
@@ -20,7 +21,7 @@ public class PlayerCheckerCounts : MonoBehaviour
 
         foreach (string targetName in targetSpawner.TargetNames)
         {
-                string trimmedTargetName = targetName.Substring(0, targetName.IndexOf('P'));
+                string trimmedTargetName = targetName.Substring(0, targetName.IndexOf('('));
                 counterNames.Add(trimmedTargetName);
             Debug.Log("Added to counterNames: " + trimmedTargetName);
         }
@@ -30,17 +31,7 @@ public class PlayerCheckerCounts : MonoBehaviour
             Debug.Log("Initialized counter for: " + counterName);
         }
     }
-    /*
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        string objectName = collision.gameObject.name;
 
-        if (counterValues.ContainsKey(objectName))
-        {
-            counterValues[objectName]++;
-            CheckWinCondition();
-        }
-    }*/
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Triggered by: " + collision.gameObject.name);
@@ -64,20 +55,7 @@ public class PlayerCheckerCounts : MonoBehaviour
             counterValues[counterName] = 0;
         }
     }
-    /*
-    private void CheckWinCondition()
-    {
-        foreach (KeyValuePair<string, int> entry in counterValues)
-        {
-            if (entry.Value < scoreForStatic)
-            {
-                return;
-            }
-        }
 
-        Time.timeScale = 0;
-        winPanel.SetActive(true);
-    }*/
     private void CheckWinCondition()
     {
         bool allCountersMet = true;

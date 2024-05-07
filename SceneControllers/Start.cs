@@ -8,7 +8,7 @@ public class Start : MonoBehaviour
 
     public void onClickStart()
     {
-        YandexGame.FullscreenShow();
+        //YandexGame.FullscreenShow();
         SceneManager.LoadScene(Scene, LoadSceneMode.Single);
 
     }
