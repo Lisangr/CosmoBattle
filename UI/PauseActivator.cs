@@ -13,6 +13,7 @@ public class PauseActivator : MonoBehaviour
     {
         buttonImage.sprite = normalSprite;
         panel.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     public void OnClick()

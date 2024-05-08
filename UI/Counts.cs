@@ -32,10 +32,8 @@ public class Counts : MonoBehaviour
         currentCoins = PlayerPrefs.GetInt("Coins", 0);
         currentCrystals = PlayerPrefs.GetInt("Crystals", 0);
 
-        if (YandexGame.SDKEnabled == true)
-        {
-            LoadSaveFromCloud();
-        }
+        LoadSaveFromCloud();
+
     }
     private void OnEnable()
     {
@@ -170,7 +168,7 @@ public class Counts : MonoBehaviour
     private void IncrementCoinCountCount()
     {
         coinCount += 1;
-        currentCoins += coinCount;
+        currentCoins += 1;
         PlayerPrefs.SetInt("Coins", currentCoins);
         MySaves();
 
@@ -179,7 +177,7 @@ public class Counts : MonoBehaviour
     private void IncrementCrystallCountCount()
     {
         crystalCount += 1;
-        currentCrystals += crystalCount;
+        currentCrystals += 1;
         PlayerPrefs.SetInt("Crystals", currentCrystals);
         MySaves();
 
@@ -269,13 +267,17 @@ public class Counts : MonoBehaviour
 
     public void LoadSaveFromCloud()
     {
-        textCoinCount.text = YandexGame.savesData.coins.ToString();
-        textCrystalCount.text = YandexGame.savesData.crystals.ToString();
+        currentCoins = YandexGame.savesData.coins;
+        currentCrystals = YandexGame.savesData.crystals;
+        Debug.Log("Всего монет загружено" + coinCount);
+        Debug.Log("Всего монет загружено" + crystalCount);
     }
     public void MySaves()
     {
         YandexGame.savesData.coins = currentCoins;
+        Debug.Log("Всего монет сохранено" + currentCoins);
         YandexGame.savesData.crystals = currentCrystals;
+        Debug.Log("Всего монет сохранено" + currentCrystals);
 
         YandexGame.SaveProgress();
     }
