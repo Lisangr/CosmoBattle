@@ -22,12 +22,14 @@ public class Counts : MonoBehaviour
         tempeyeCount, tempfishCount, tempfungusCount, temphealthPotionCount, 
         tempmagicFishCount, tempmeatCount, temppieCount, tempsardinsCount;
     */
-    private int currentCoins;
-    private int currentCrystals;
+    public int currentCoins;
+    public int currentCrystals;
     private void Start()
     {
-        playerCollisin = FindObjectOfType<PlayerCollisin>().GetComponent<PlayerCollisin>();
-        //playerCheckerCounts = FindObjectOfType<PlayerCheckerCounts>().GetComponent<PlayerCheckerCounts>();
+
+            playerCollisin = FindObjectOfType<PlayerCollisin>().GetComponent<PlayerCollisin>();
+        
+            //playerCheckerCounts = FindObjectOfType<PlayerCheckerCounts>().GetComponent<PlayerCheckerCounts>();
 
         currentCoins = PlayerPrefs.GetInt("Coins", 0);
         currentCrystals = PlayerPrefs.GetInt("Crystals", 0);

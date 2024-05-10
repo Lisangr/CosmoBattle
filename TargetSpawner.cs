@@ -11,7 +11,7 @@ public class TargetSpawner : MonoBehaviour
     public GameObject[] TargetPrefabs;
     public GameObject[] TargetPrefabsOnPauseMenu;
     public Transform TargetPanel;
-    public Transform TargetPausePanel;
+    //public Transform TargetPausePanel;
 
     private List<GameObject> spawnedTargets = new List<GameObject>();
     // ...
@@ -36,13 +36,13 @@ public class TargetSpawner : MonoBehaviour
             GameObject targetInstance = Instantiate(TargetPrefabs[targetIndex], transform);
             targetInstance.transform.SetParent(TargetPanel, false);
             spawnedTargets.Add(targetInstance);
-
+            /*
             if (TargetPrefabsOnPauseMenu.Length > targetIndex)
             {
                 GameObject targetPauseInstance = Instantiate(TargetPrefabsOnPauseMenu[targetIndex], transform);
                 targetPauseInstance.transform.SetParent(TargetPausePanel, false);
                 spawnedTargets.Add(targetPauseInstance);
-            }
+            }*/
         }
         // ...
 

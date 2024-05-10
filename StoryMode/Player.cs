@@ -1,6 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using YG;
 
 public class Player : MonoBehaviour
 {
@@ -10,8 +14,10 @@ public class Player : MonoBehaviour
     public float minHeight;
     public int health;
     public GameObject particleSystem;
+    public Joystick joystick;
 
     private Vector2 targetPos;
+
 
     private void Update()
     {
@@ -21,6 +27,7 @@ public class Player : MonoBehaviour
         }
         transform.position = Vector2.MoveTowards(transform.position, targetPos, speedY * Time.deltaTime);
 
+        //для компьютеров
         if (Input.GetKeyDown(KeyCode.W) && transform.position.y < maxHeight) 
         {
             Instantiate(particleSystem, transform.position, Quaternion.identity);
@@ -31,7 +38,22 @@ public class Player : MonoBehaviour
             Instantiate(particleSystem, transform.position, Quaternion.identity);
             targetPos = new Vector2(transform.position.x, transform.position.y - offset);
         }
+
+        // Для джойстика
+        float joystickInput = joystick.Direction.y;
+
+        if (joystickInput > 0 && transform.position.y < maxHeight)
+        {
+            Instantiate(particleSystem, transform.position, Quaternion.identity);
+            targetPos = new Vector2(transform.position.x, transform.position.y + offset);
+        }
+        if (joystickInput < 0 && transform.position.y > minHeight)
+        {
+            Instantiate(particleSystem, transform.position, Quaternion.identity);
+            targetPos = new Vector2(transform.position.x, transform.position.y - offset);
+        }
     }
+}
     
     /*
       стрельба вправо
@@ -119,4 +141,3 @@ public class Player : MonoBehaviour
     }
     /*
       */
-}
