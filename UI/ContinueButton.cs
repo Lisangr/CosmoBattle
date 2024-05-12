@@ -15,8 +15,6 @@ public class ContinueButton : MonoBehaviour
     public void OnClick()
     {
         Time.timeScale = 1.0f;
-        pauseButton.rectTransform.localScale = new Vector3(1.18f, 1.0f, 1.0f);
-        pauseButton.rectTransform.localScale = Vector3.one;
         pauseButton.sprite = normalSprite;
         animator.SetTrigger("Exit");
         pausePanel.SetActive(false);      

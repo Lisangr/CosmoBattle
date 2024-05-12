@@ -170,6 +170,7 @@ public class Counts : MonoBehaviour
         currentCoins += 1;
         PlayerPrefs.SetInt("Coins", currentCoins);
         MySaves();
+        AddGoldLeaderboard();
 
         textCoinCount.text = coinCount.ToString();
     }
@@ -179,6 +180,7 @@ public class Counts : MonoBehaviour
         currentCrystals += 1;
         PlayerPrefs.SetInt("Crystals", currentCrystals);
         MySaves();
+        AddCrystallsLeaderboard();
 
         textCrystalCount.text = crystalCount.ToString();
     }
@@ -279,5 +281,15 @@ public class Counts : MonoBehaviour
         Debug.Log("Всего кристаллов сохранено" + currentCrystals);
 
         YandexGame.SaveProgress();
+    }
+    public void AddGoldLeaderboard()
+    {
+        YandexGame.NewLeaderboardScores("Gold", currentCoins);
+
+    }
+    public void AddCrystallsLeaderboard()
+        {
+            YandexGame.NewLeaderboardScores("Crystalls", currentCrystals);
+
     }
 }
