@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using YG;
@@ -9,13 +8,13 @@ public class Counts : MonoBehaviour
 
     public TMP_Text textAppleCount, textBananaCount, textBerriesCount, textBerryCount, textBreadCount,
         textCheeseCount, textCleverCount, textCoinCount, textCrystalCount, textEggsCount, textEyeCount,
-        textFishCount, textFungusCount, textHealthPotionCount, textMagicFishCount,
-        textMeatCount, textPieCount, textSardinsCount;
+        textFishCount, textFungusCount, textHealthPotionCount, textMagicFishCount, textMeatCount, textPieCount, 
+        textSardinsCount;
 
     private int appleCount = 0, bananaCount = 0, berriesCount = 0, berryCount = 0, breadCount = 0,
         cheeseCount = 0, cleverCount = 0, coinCount = 0, crystalCount = 0, eggsCount = 0,
-        eyeCount = 0, fishCount = 0, fungusCount = 0, healthPotionCount = 0,
-        magicFishCount = 0, meatCount = 0, pieCount = 0, sardinsCount = 0;
+        eyeCount = 0, fishCount = 0, fungusCount = 0, healthPotionCount = 0, magicFishCount = 0, 
+        meatCount = 0, pieCount = 0, sardinsCount = 0;
     /*
     private int tempappleCount, tempbananaCount, tempberriesCount, tempberryCount, tempbreadCount,
         tempcheeseCount, tempcleverCount, tempcoinCount, tempcrystallCount, tempeggsCount, 
@@ -26,7 +25,6 @@ public class Counts : MonoBehaviour
     public int currentCrystals;
     private void Start()
     {
-
             playerCollisin = FindObjectOfType<PlayerCollisin>().GetComponent<PlayerCollisin>();
         
             //playerCheckerCounts = FindObjectOfType<PlayerCheckerCounts>().GetComponent<PlayerCheckerCounts>();
@@ -35,7 +33,6 @@ public class Counts : MonoBehaviour
         currentCrystals = PlayerPrefs.GetInt("Crystals", 0);
 
         LoadSaveFromCloud();
-
     }
     private void OnEnable()
     {
@@ -272,14 +269,14 @@ public class Counts : MonoBehaviour
         currentCoins = YandexGame.savesData.coins;
         currentCrystals = YandexGame.savesData.crystals;
         Debug.Log("Всего монет загружено" + coinCount);
-        Debug.Log("Всего монет загружено" + crystalCount);
+        Debug.Log("Всего кристаллов загружено" + crystalCount);
     }
     public void MySaves()
     {
         YandexGame.savesData.coins = currentCoins;
         Debug.Log("Всего монет сохранено" + currentCoins);
         YandexGame.savesData.crystals = currentCrystals;
-        Debug.Log("Всего монет сохранено" + currentCrystals);
+        Debug.Log("Всего кристаллов сохранено" + currentCrystals);
 
         YandexGame.SaveProgress();
     }

@@ -8,7 +8,7 @@ public class JoystickController : MonoBehaviour
     public static bool onMobile;
     private void Start()
     {
-        if (YandexGame.EnvironmentData.isMobile)
+        if (YandexGame.EnvironmentData.isMobile || YandexGame.EnvironmentData.isTablet)
         {
             onMobile = true;
             mobileController.SetActive(true);
@@ -18,5 +18,6 @@ public class JoystickController : MonoBehaviour
             onMobile = false;
             mobileController.SetActive(false);
         }
+       
     }
 }

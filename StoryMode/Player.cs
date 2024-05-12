@@ -1,10 +1,5 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using YG;
 
 public class Player : MonoBehaviour
 {
@@ -18,7 +13,6 @@ public class Player : MonoBehaviour
 
     private Vector2 targetPos;
 
-
     private void Update()
     {
         if (health <= 0)
@@ -30,29 +24,30 @@ public class Player : MonoBehaviour
         //для компьютеров
         if (Input.GetKeyDown(KeyCode.W) && transform.position.y < maxHeight) 
         {
-            Instantiate(particleSystem, transform.position, Quaternion.identity);
+            //Instantiate(particleSystem, transform.position, Quaternion.identity);
             targetPos = new Vector2(transform.position.x, transform.position.y + offset);
         }
         if (Input.GetKeyDown(KeyCode.S) && transform.position.y > minHeight)
         {
-            Instantiate(particleSystem, transform.position, Quaternion.identity);
+            //Instantiate(particleSystem, transform.position, Quaternion.identity);
             targetPos = new Vector2(transform.position.x, transform.position.y - offset);
         }
 
         // Для джойстика
         float joystickInput = joystick.Direction.y;
 
-        if (joystickInput > 0 && transform.position.y < maxHeight)
+        if (JoystickController.onMobile && (joystickInput > 0 && transform.position.y < maxHeight))
         {
-            Instantiate(particleSystem, transform.position, Quaternion.identity);
+            //Instantiate(particleSystem, transform.position, Quaternion.identity);
             targetPos = new Vector2(transform.position.x, transform.position.y + offset);
         }
-        if (joystickInput < 0 && transform.position.y > minHeight)
+        if (JoystickController.onMobile && (joystickInput < 0 && transform.position.y > minHeight))
         {
-            Instantiate(particleSystem, transform.position, Quaternion.identity);
+            //Instantiate(particleSystem, transform.position, Quaternion.identity);
             targetPos = new Vector2(transform.position.x, transform.position.y - offset);
         }
     }
+        
 }
     
     /*

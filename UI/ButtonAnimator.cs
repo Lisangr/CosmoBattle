@@ -19,4 +19,5 @@ public class ButtonAnimator : MonoBehaviour
     {
         animator.SetTrigger("Exit");
     }
+
 }

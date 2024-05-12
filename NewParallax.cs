@@ -7,8 +7,11 @@ public class NewParallax : MonoBehaviour
 
     public float speed = 0.2f;
 
-    void Start() => mat = GetComponent<Renderer>().material;
-
+    void Start()
+    {
+        Time.timeScale = 1f;
+        mat = GetComponent<Renderer>().material;
+    }
     void Update()
     {
         distance += Time.deltaTime * speed;
