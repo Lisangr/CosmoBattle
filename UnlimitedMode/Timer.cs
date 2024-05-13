@@ -33,7 +33,6 @@ public class Timer : MonoBehaviour
             AddTimeLeaderboard();
             SaveTimer();
         }
-
     }
 
     private void SaveTimer()
@@ -57,6 +56,11 @@ public class Timer : MonoBehaviour
     private void Update()
     {
         if (isRunning)
+        {
+            currentTime += Time.deltaTime;
+            DisplayTime(currentTime);
+        }
+        if (!isRunning && Player.isRevarded == true)
         {
             currentTime += Time.deltaTime;
             DisplayTime(currentTime);

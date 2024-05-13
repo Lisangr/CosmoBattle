@@ -1,4 +1,7 @@
 using UnityEngine;
+using YG;
+using TMPro;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -12,47 +15,72 @@ public class Player : MonoBehaviour
     public int health;
     public GameObject particleSystem;
     public Joystick joystick;
-    public GameObject[] hearts;
+    public Image hearts;
     private Vector2 targetPos;
-    private int activeHeartIndex = 0;
-
+    public GameObject defeatPanel;
+    private int AdID = 1;
+    public static bool isRevarded;
+    public GameObject endGameScreen;
+    public TMP_Text healthText;
     private void OnEnable()
     {
-        Enemy.DestroyHealthImage += DeleteOneHeartIcon;
+        YandexGame.RewardVideoEvent += Rewarded;
         HealthPotionEventScript.LetsHealThis += DoHealingPlayer;
+    }
+
+    public void Rewarded(int id)
+    {
+        if (id == AdID)
+            AddHealth();
+
+        gameObject.SetActive(true);
+        defeatPanel.SetActive(false);
+        Time.timeScale = 1.0f;
+        isRevarded = true;
+
+        YandexGame.RewardVideoEvent -= Rewarded;
     }
 
     private void DoHealingPlayer()
     {
-        if (activeHeartIndex > 0 && health < 5)
-        {            
-            activeHeartIndex--;
-            hearts[activeHeartIndex].SetActive(true);            
+        if (health < 5)
+        {       
             health ++;                      
         }
-    }
+    }  
 
-    private void DeleteOneHeartIcon()
+    private void AddHealth()
     {
-        if (activeHeartIndex < hearts.Length)
-        {
-            hearts[activeHeartIndex].SetActive(false);
-            activeHeartIndex++;
-        }
+        health = 5;
     }
 
     private void OnDisable()
-    {
-        Enemy.DestroyHealthImage -= DeleteOneHeartIcon;
+    {                
         HealthPotionEventScript.LetsHealThis -= DoHealingPlayer;
+    }
+    private void Start()
+    {
+        healthText.text = health.ToString();
     }
     private void Update()
     {
+        healthText.text = health.ToString();
+
         if (health <= 0)
         {
             OnPlayerDeath?.Invoke();
-            Destroy(gameObject);
-        }       
+            Time.timeScale = 0f;
+            gameObject.SetActive(false);
+
+            if (!isRevarded)
+            {
+                defeatPanel.SetActive(true);
+            }
+            else
+            {
+                endGameScreen.SetActive(true);
+            }
+        }
 
         transform.position = Vector2.MoveTowards(transform.position, targetPos, speedY * Time.deltaTime);
 
