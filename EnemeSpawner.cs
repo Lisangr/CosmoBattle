@@ -5,9 +5,9 @@ public class EnemeSpawner : MonoBehaviour
     public GameObject[] StarVariants;
 
     private float timeBtwSpawn;
-    public float startTimeBtwSpawn;
-    public float decreaseTime;
-    public float minTime = 2f;
+    public float startTimeBtwSpawn = 1.5f;
+    public float decreaseTime = 0.05f;
+    public float minTime = 1f;
 
     private void Update()
     {

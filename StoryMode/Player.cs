@@ -1,8 +1,10 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    public delegate void DeathAction();
+    public static event DeathAction OnPlayerDeath;
+
     public float offset;
     public float speedY;
     public float maxHeight;
@@ -10,44 +12,72 @@ public class Player : MonoBehaviour
     public int health;
     public GameObject particleSystem;
     public Joystick joystick;
-
+    public GameObject[] hearts;
     private Vector2 targetPos;
+    private int activeHeartIndex = 0;
 
+    private void OnEnable()
+    {
+        Enemy.DestroyHealthImage += DeleteOneHeartIcon;
+        HealthPotionEventScript.LetsHealThis += DoHealingPlayer;
+    }
+
+    private void DoHealingPlayer()
+    {
+        if (activeHeartIndex > 0 && health < 5)
+        {            
+            activeHeartIndex--;
+            hearts[activeHeartIndex].SetActive(true);            
+            health ++;                      
+        }
+    }
+
+    private void DeleteOneHeartIcon()
+    {
+        if (activeHeartIndex < hearts.Length)
+        {
+            hearts[activeHeartIndex].SetActive(false);
+            activeHeartIndex++;
+        }
+    }
+
+    private void OnDisable()
+    {
+        Enemy.DestroyHealthImage -= DeleteOneHeartIcon;
+        HealthPotionEventScript.LetsHealThis -= DoHealingPlayer;
+    }
     private void Update()
     {
         if (health <= 0)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
+            OnPlayerDeath?.Invoke();
+            Destroy(gameObject);
+        }       
+
         transform.position = Vector2.MoveTowards(transform.position, targetPos, speedY * Time.deltaTime);
 
-        //для компьютеров
         if (Input.GetKeyDown(KeyCode.W) && transform.position.y < maxHeight) 
         {
-            //Instantiate(particleSystem, transform.position, Quaternion.identity);
             targetPos = new Vector2(transform.position.x, transform.position.y + offset);
         }
         if (Input.GetKeyDown(KeyCode.S) && transform.position.y > minHeight)
         {
-            //Instantiate(particleSystem, transform.position, Quaternion.identity);
             targetPos = new Vector2(transform.position.x, transform.position.y - offset);
         }
 
-        // Для джойстика
         float joystickInput = joystick.Direction.y;
 
         if (JoystickController.onMobile && (joystickInput > 0 && transform.position.y < maxHeight))
         {
-            //Instantiate(particleSystem, transform.position, Quaternion.identity);
             targetPos = new Vector2(transform.position.x, transform.position.y + offset);
         }
         if (JoystickController.onMobile && (joystickInput < 0 && transform.position.y > minHeight))
         {
-            //Instantiate(particleSystem, transform.position, Quaternion.identity);
             targetPos = new Vector2(transform.position.x, transform.position.y - offset);
         }
-    }
         
+    }
+
 }
     
     /*
