@@ -7,7 +7,10 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(Vector2.left * speed);  
+        if (!PauseActivator.isPaused)
+        {
+            transform.Translate(Vector2.left * speed);
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -4,14 +4,15 @@ using YG;
 
 public class NextLevel : MonoBehaviour
 {
+    public string sceneName;
     private int currentLevel;
     public void LoadNextLevel()
     {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        int nextSceneIndex = currentSceneIndex + 1;
+        //int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        //int nextSceneIndex = currentSceneIndex + 1;
         UnLockLevel();
 
-        SceneManager.LoadScene(nextSceneIndex);        
+        SceneManager.LoadScene(sceneName);        
     }
     public void UnLockLevel()
     {

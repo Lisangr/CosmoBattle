@@ -7,7 +7,7 @@ public class PauseActivator : MonoBehaviour
     public Sprite normalSprite; 
     public Sprite pressedSprite; 
     public GameObject panel;
-    private static bool isPaused = false; // Флаг, указывающий, находится ли игра в состоянии паузы
+    public static bool isPaused = false; // Флаг, указывающий, находится ли игра в состоянии паузы
 
     private void Awake()
     {

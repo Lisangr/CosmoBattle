@@ -3,11 +3,11 @@ using UnityEngine;
 public class EnemeSpawner : MonoBehaviour
 {
     public GameObject[] StarVariants;
-
-    private float timeBtwSpawn;
     public float startTimeBtwSpawn = 1.5f;
     public float decreaseTime = 0.05f;
     public float minTime = 1f;
+
+    private float timeBtwSpawn;
 
     private void Update()
     {
@@ -26,5 +26,6 @@ public class EnemeSpawner : MonoBehaviour
         {
             timeBtwSpawn -= Time.deltaTime;
         }
+
     }
 }

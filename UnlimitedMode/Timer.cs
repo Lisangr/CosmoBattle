@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using YG;
@@ -7,7 +5,7 @@ using System;
 
 public class Timer : MonoBehaviour
 {
-    private LeaderboardYG leaderboardYG;
+    //private LeaderboardYG leaderboardYG;
     public TextMeshProUGUI timerText;
     public bool isRunning = false;
     public float currentTime = 0f;

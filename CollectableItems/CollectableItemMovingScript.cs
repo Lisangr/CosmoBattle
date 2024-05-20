@@ -7,6 +7,9 @@ public class CollectableItemMovingScript : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(Vector2.left * speed);
+        if (!PauseActivator.isPaused)
+        {
+            transform.Translate(Vector2.left * speed);
+        }
     }
 }
