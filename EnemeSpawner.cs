@@ -8,7 +8,10 @@ public class EnemeSpawner : MonoBehaviour
     public float minTime = 1f;
 
     private float timeBtwSpawn;
-
+    private void Start()
+    {
+        Time.timeScale = 1f;
+    }
     private void Update()
     {
         if (timeBtwSpawn <= 0)

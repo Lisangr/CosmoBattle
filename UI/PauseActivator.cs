@@ -12,8 +12,14 @@ public class PauseActivator : MonoBehaviour
     private void Awake()
     {
         buttonImage.sprite = normalSprite;
+        panel.SetActive(false);        
+    }
+    private void Start()
+    {
+        buttonImage.sprite = normalSprite;
         panel.SetActive(false);
         Time.timeScale = 1f;
+        isPaused = false; // Сброc флага из состояния паузы
     }
 
     public void OnClick()
