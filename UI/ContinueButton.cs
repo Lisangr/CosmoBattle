@@ -3,14 +3,11 @@ using UnityEngine.UI;
 
 public class ContinueButton : MonoBehaviour
 {
-    public delegate void ADAction();
-    public static event ADAction LetsWatchAD;
-
     public Image pauseButton;
     public Sprite normalSprite;
     public GameObject pausePanel;
     private Animator animator;
-
+    public static bool isPresedContinueButton = false;
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -20,7 +17,7 @@ public class ContinueButton : MonoBehaviour
         Time.timeScale = 1.0f;
         pauseButton.sprite = normalSprite;
         animator.SetTrigger("Exit");
-        pausePanel.SetActive(false);              
+        pausePanel.SetActive(false);
     }
     public void ClickForAD()
     {

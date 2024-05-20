@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -9,7 +10,7 @@ public class Enemy : MonoBehaviour
     {
         if (!PauseActivator.isPaused)
         {
-            transform.Translate(Vector2.left * speed);
+                transform.Translate(Vector2.left * speed);             
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -17,7 +18,7 @@ public class Enemy : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             collision.GetComponent<Player>().health -= damage;
-            Destroy(gameObject);
+            Destroy(gameObject);            
         }
     }
 }
