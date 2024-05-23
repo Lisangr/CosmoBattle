@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,11 +8,13 @@ public class ContinueButton : MonoBehaviour
     public Sprite normalSprite;
     public GameObject pausePanel;
     private Animator animator;
-    public static bool isPresedContinueButton = false;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
     }
+
+
     public void OnClick()
     {
         Time.timeScale = 1.0f;

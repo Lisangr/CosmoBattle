@@ -7,8 +7,8 @@ public class PauseActivator : MonoBehaviour
     public Sprite normalSprite; 
     public Sprite pressedSprite; 
     public GameObject panel;
-    public static bool isPaused = false; // Флаг, указывающий, находится ли игра в состоянии паузы
-
+    public static bool isPaused = false;
+    
     private void Awake()
     {
         buttonImage.sprite = normalSprite;
@@ -19,24 +19,24 @@ public class PauseActivator : MonoBehaviour
         buttonImage.sprite = normalSprite;
         panel.SetActive(false);
         Time.timeScale = 1f;
-        isPaused = false; // Сброc флага из состояния паузы
+        isPaused = false;
     }
 
     public void OnClick()
-    {// Проверьте состояние игры
+    {
         if (!isPaused)
         {
             buttonImage.sprite = pressedSprite;
             panel.SetActive(true);
             Time.timeScale = 0f;
-            isPaused = true; // Флаг в состояние паузы
+            isPaused = true;
         }
         else
         {
             buttonImage.sprite = normalSprite;
             panel.SetActive(false);
             Time.timeScale = 1f;
-            isPaused = false; // Сброc флага из состояния паузы
+            isPaused = false;
         }
     }
 }

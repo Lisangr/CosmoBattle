@@ -1,6 +1,7 @@
 using UnityEngine;
 using YG;
 using TMPro;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour
     public GameObject endGameScreen;
     public TMP_Text healthText;
 
+    private AudioSource audioSource;
     private void OnEnable()
     {
         YandexGame.RewardVideoEvent += Rewarded;
@@ -60,49 +62,55 @@ public class Player : MonoBehaviour
     private void Start()
     {
         healthText.text = health.ToString();
+        audioSource = GetComponent<AudioSource>();
     }
     private void Update()
     {
         healthText.text = health.ToString();
-
-        if (health <= 0)
+        if (!PauseActivator.isPaused)
         {
-            OnPlayerDeath?.Invoke();
-            Time.timeScale = 0f;
-            gameObject.SetActive(false);
-
-            if (!isRevarded)
+            if (health <= 0)
             {
-                defeatPanel.SetActive(true);
+                OnPlayerDeath?.Invoke();
+                Time.timeScale = 0f;
+                gameObject.SetActive(false);
+
+                if (!isRevarded)
+                {
+                    defeatPanel.SetActive(true);
+                }
+                else
+                {
+                    endGameScreen.SetActive(true);
+                }
             }
-            else
+
+            transform.position = Vector2.MoveTowards(transform.position, targetPos, speedY * Time.deltaTime);
+
+            if (Input.GetKeyDown(KeyCode.W) && transform.position.y < maxHeight)
             {
-                endGameScreen.SetActive(true);
+                targetPos = new Vector2(transform.position.x, transform.position.y + offset);
+                audioSource.Play();
+            }
+            if (Input.GetKeyDown(KeyCode.S) && transform.position.y > minHeight)
+            {
+                targetPos = new Vector2(transform.position.x, transform.position.y - offset);
+                audioSource.Play();
+            }
+
+            float joystickInput = joystick.Direction.y;
+
+            if (JoystickController.onMobile && (joystickInput > 0 && transform.position.y < maxHeight))
+            {
+                targetPos = new Vector2(transform.position.x, transform.position.y + offset);
+                audioSource.Play();
+            }
+            if (JoystickController.onMobile && (joystickInput < 0 && transform.position.y > minHeight))
+            {
+                targetPos = new Vector2(transform.position.x, transform.position.y - offset);
+                audioSource.Play();
             }
         }
-
-        transform.position = Vector2.MoveTowards(transform.position, targetPos, speedY * Time.deltaTime);
-
-        if (Input.GetKeyDown(KeyCode.W) && transform.position.y < maxHeight)
-        {
-            targetPos = new Vector2(transform.position.x, transform.position.y + offset);
-        }
-        if (Input.GetKeyDown(KeyCode.S) && transform.position.y > minHeight)
-        {
-            targetPos = new Vector2(transform.position.x, transform.position.y - offset);
-        }
-
-        float joystickInput = joystick.Direction.y;
-
-        if (JoystickController.onMobile && (joystickInput > 0 && transform.position.y < maxHeight))
-        {
-            targetPos = new Vector2(transform.position.x, transform.position.y + offset);
-        }
-        if (JoystickController.onMobile && (joystickInput < 0 && transform.position.y > minHeight))
-        {
-            targetPos = new Vector2(transform.position.x, transform.position.y - offset);
-        }
-
     }
 
 }
