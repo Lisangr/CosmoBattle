@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Destroer : MonoBehaviour
 {
-    public float lifeTime;
+    private float lifeTime = 20f;
     void Start()
     {
         Destroy(gameObject, lifeTime);

@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     }
     private void Update()
     {
-        if (!PauseActivator.isPaused)
+        if (!PauseActivator.isPaused && !TimerBeforeAdsYG.inPausing)
         {
             transform.Translate(Vector2.left * speed);             
         }

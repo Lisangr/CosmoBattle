@@ -86,12 +86,47 @@ public class Player : MonoBehaviour
             }
 
             transform.position = Vector2.MoveTowards(transform.position, targetPos, speedY * Time.deltaTime);
+            // Проверяем нажатие клавиши W
+            if (Input.GetKeyDown(KeyCode.W) && transform.position.y < maxHeight)
+            {
+                targetPos = new Vector2(transform.position.x, Mathf.Clamp(transform.position.y + offset, minHeight, maxHeight));
+                targetPos.y = Mathf.Round(targetPos.y / offset) * offset; // Округляем до ближайшего значения с шагом offset
+                audioSource.Play();
+            }
 
+            // Проверяем нажатие клавиши S
+            if (Input.GetKeyDown(KeyCode.S) && transform.position.y > minHeight)
+            {
+                targetPos = new Vector2(transform.position.x, Mathf.Clamp(transform.position.y - offset, minHeight, maxHeight));
+                targetPos.y = Mathf.Round(targetPos.y / offset) * offset; // Округляем до ближайшего значения с шагом offset
+                audioSource.Play();
+            }
+
+            // Получаем значение с джойстика
+            float joystickInput = joystick.Direction.y;
+
+            // Проверяем движение джойстика вверх
+            if (JoystickController.onMobile && (joystickInput > 0 && transform.position.y < maxHeight))
+            {
+                targetPos = new Vector2(transform.position.x, Mathf.Clamp(transform.position.y + offset, minHeight, maxHeight));
+                targetPos.y = Mathf.Round(targetPos.y / offset) * offset; // Округляем до ближайшего значения с шагом offset
+                audioSource.Play();
+            }
+
+            // Проверяем движение джойстика вниз
+            if (JoystickController.onMobile && (joystickInput < 0 && transform.position.y > minHeight))
+            {
+                targetPos = new Vector2(transform.position.x, Mathf.Clamp(transform.position.y - offset, minHeight, maxHeight));
+                targetPos.y = Mathf.Round(targetPos.y / offset) * offset; // Округляем до ближайшего значения с шагом offset
+                audioSource.Play();
+            }
+            /*
             if (Input.GetKeyDown(KeyCode.W) && transform.position.y < maxHeight)
             {
                 targetPos = new Vector2(transform.position.x, transform.position.y + offset);
                 audioSource.Play();
             }
+
             if (Input.GetKeyDown(KeyCode.S) && transform.position.y > minHeight)
             {
                 targetPos = new Vector2(transform.position.x, transform.position.y - offset);
@@ -109,7 +144,7 @@ public class Player : MonoBehaviour
             {
                 targetPos = new Vector2(transform.position.x, transform.position.y - offset);
                 audioSource.Play();
-            }
+            }*/
         }
     }
 

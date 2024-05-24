@@ -3,9 +3,9 @@ using UnityEngine;
 public class EnemeSpawner : MonoBehaviour
 {
     public GameObject[] StarVariants;
-    public float startTimeBtwSpawn = 1.5f;
+    public float startTimeBtwSpawn = 2f;
     public float decreaseTime = 0.05f;
-    public float minTime = 1f;
+    public float minTime = 1.4f;
 
     private float timeBtwSpawn;
     private void Start()
