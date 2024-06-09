@@ -14,7 +14,10 @@ public class NewParallax : MonoBehaviour
     }
     void Update()
     {
-        distance += Time.deltaTime * speed;
-        mat.SetTextureOffset("_MainTex", Vector2.right * distance);
+        if (!PauseActivator.isPaused && !TimerBeforeAdsYG.inPausing)
+        {
+            distance += Time.deltaTime * speed;
+            mat.SetTextureOffset("_MainTex", Vector2.right * distance);
+        }
     }
 }
