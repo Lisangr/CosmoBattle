@@ -8,7 +8,10 @@ public class NexDialogue : MonoBehaviour
 
     public void OnClick()
     {
-        current.SetActive(false);
-        next.SetActive(true);
+        //if (Time.timeScale == 1f)
+        //{
+            current.SetActive(false);
+            next.SetActive(true);
+        //}
     }
 }
