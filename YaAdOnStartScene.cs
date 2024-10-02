@@ -1,14 +1,14 @@
 using UnityEngine;
-using YG;
+//using YG;
 
 public class YaAdOnStartScene : MonoBehaviour
 {
-    private void Awake()
+    private void Start()
     {
         Time.timeScale = 1f;
     }
-    public void Start()
-    {
-        YandexGame.FullscreenShow();
-    }
+    //public void Start()
+   // {
+   //     YandexGame.FullscreenShow();
+   // }
 }

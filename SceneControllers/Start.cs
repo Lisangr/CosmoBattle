@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using YG;
 
 public class Start : MonoBehaviour
 {
@@ -8,8 +7,6 @@ public class Start : MonoBehaviour
 
     public void onClickStart()
     {
-        //YandexGame.FullscreenShow();
         SceneManager.LoadScene(Scene, LoadSceneMode.Single);
-
     }
 }

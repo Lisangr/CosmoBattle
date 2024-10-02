@@ -5,10 +5,10 @@ public class RandomSoundOnLoad : MonoBehaviour
 {
     public AudioClip[] audioClips; 
     private AudioSource audioSource;
-    private void Awake()
+    /*private void Awake()
     {
         Time.timeScale = 1.0f;
-    }
+    }*/
     void Start()
     {
         audioSource = GetComponent<AudioSource>();

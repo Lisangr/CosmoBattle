@@ -8,10 +8,7 @@ public class NextLevel : MonoBehaviour
     private int currentLevel;
     public void LoadNextLevel()
     {
-        //int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        //int nextSceneIndex = currentSceneIndex + 1;
         UnLockLevel();
-
         SceneManager.LoadScene(sceneName);        
     }
     public void UnLockLevel()
@@ -29,6 +26,5 @@ public class NextLevel : MonoBehaviour
     {
         YandexGame.savesData.levelPassed = currentLevel + 1;
         YandexGame.SaveProgress();
-        Debug.Log("Уровень сохранен, следующий уровень" + currentLevel);
     }
 }

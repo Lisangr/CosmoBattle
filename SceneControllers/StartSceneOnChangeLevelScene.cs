@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using YG;
 
 public class StartSceneOnChangeLevelScene : MonoBehaviour
 { 
